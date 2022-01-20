@@ -1,7 +1,7 @@
 const res = require("express/lib/response");
 const mongoose = require("mongoose");
 const app = require("./app");
-const port = 3000;
+const port = process.env.PORT || 3977;
 const urlMongoDb =
   "mongodb+srv://admin:admin12345@taskdb.i1cze.mongodb.net/mydb";
 
@@ -20,7 +20,7 @@ mongoose.connect(
 
         app.listen(port, () => {
           console.log(
-            "Servidor del API Rest esta funcionando en http://localhost:3000"
+            `Servidor del API Rest esta funcionando en http://localhost:${port}`
           );
         });
       }
