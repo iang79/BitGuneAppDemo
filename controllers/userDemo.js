@@ -9,7 +9,7 @@ async function createUser(req, res) {
   userDemo.surname = params.surname;
   userDemo.email = params.email;
   userDemo.telephone = params.telephone;
-  userDemo.birhtDate = params.birhtDate;
+  userDemo.birth = params.birth;
   userDemo.sex = params.sex;
   userDemo.query = params.query;
   userDemo.subQuery = params.subQuery;
@@ -22,7 +22,8 @@ async function createUser(req, res) {
     if (!userDemoStore) {
       res.status(400).send({ msg: "No se ha guardado el usuario" });
     } else {
-      res.status(200).send({ userDemo: userDemoStore });
+      //res.status(200).send({ userDemo: userDemoStore });
+      res.status(200).redirect("/");
     }
   } catch (error) {
     res.status(500).send(error);

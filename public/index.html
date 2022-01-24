@@ -4,17 +4,15 @@
 <head>
     <title>Formulario</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
+    <script src="/jquery/jquery.js"></script>
 </head>
 
 <body>
-    <nav class="nav">
-        <a class="nav-link active" href="#">FORMULARIO</a>
+    <nav class="container border col-sm-3 mt-4">
+        <a class="nav-link active text-center">SOLICITUD DE CONSULTA BITGUNE DEMO APP</a>
     </nav>
     <div id="main" class="container border col-sm-3">
-        <form action="/api/user" id="form" method="POST" class="mt-4">
+        <form action="/api/user" id="form" method="POST" class="mt-4" onsubmit="return checkUserDate()">
             <input type="hidden" name="oculto" val="campo oculto pero no invisible!" />
             <div class="form-group col-sm-12 mb-2">
                 <label for="name" class="col-form-label">Nombre: </label>
@@ -26,16 +24,17 @@
             </div>
             <div class="form-group col-sm-12 mb-2">
                 <label for="email" class="col-form-label">Email: </label>
-                <input type="text" id="email" name="email" class="form-control" required />
+                <input type="email" id="email" name="email" class="form-control" required placeholder="mail@mail.net" />
             </div>
             <div class="form-group col-sm-12 mb-2">
                 <label for="telephone" class="col-form-label">Teléfono: </label>
-                <input type="text" id="telephone" name="telephone" class="form-control" required />
+                <input type="text" id="telephone" name="telephone" class="form-control" required
+                    pattern="[6789][0-9]{8}" placeholder="Teléfono de 9 cifras" />
             </div>
-            <div class="form-group col-sm-12 mb-2">
-                <label for="birthDate" class="col-form-label">Fecha de nacimiento:
+            <div class=" form-group col-sm-12 mb-2">
+                <label for="birth" class="col-form-label">Fecha de nacimiento:
                 </label>
-                <input type="date" id="birthDate" name="birthDate" class="form-control" required />
+                <input type="date" id="birth" name="birth" class="form-control" required />
             </div>
             <div class="form-group col-sm-12 mb-2">
                 <label for="sex" class="col-form-label">Sexo: </label>
@@ -55,7 +54,7 @@
                 <input type="textbox" id="msg" name="msg" class="form-control" />
             </div>
             <div class="form-group col-sm-12 mb-2">
-                <input type="checkbox" id="conditions" name="conditions" />
+                <input type="checkbox" id="conditions" name="conditions" value="yes" />
                 <label for="conditions" class="col-form-label">Aceptar condiciones
                 </label>
             </div>
@@ -66,12 +65,17 @@
             </div>
         </form>
     </div>
+    <div class='card container border col-sm-6 text-center mt-4 p-4'>
 
-    <div id="myData"></div>
+        <div id="myData" class="card-header text-center">Solicitudes</div>
+    </div>
     <script>
 
         let qInf = [];
         let qInc = [];
+        var today = new Date();
+        let userData;
+        $('#conditions').checked = false;
 
         fetch("http://localhost:3977/api/info")
             .then(function (response) {
@@ -89,11 +93,25 @@
                 return response.json();
             })
             .then(function (dataUser) {
-                listData(dataUser);
+                userData = dataUser;
+                listData(userData);
             })
             .catch(function (err) {
                 console.log("error: " + err);
             });
+
+
+
+        function getDate() {
+            today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) { dd = '0' + dd } if (mm < 10) { mm = '0' + mm }
+            today = yyyy + "" + mm + "" + dd;
+
+            document.getElementById("todayDate").value = today;
+        }
 
         function appendData(data) {
 
@@ -104,10 +122,8 @@
                 options.text = data[i].name;
                 $('#query').append(options);
 
-
                 if (i == 0) {
 
-                    // ARRANCAR ROBO3T!!
                     for (var j = 0; j < data[i].sub.length; j++) {
 
                         qInf.push(data[i].sub[j].name);
@@ -126,7 +142,7 @@
             }
 
         }
-
+        //Cargar los subtipos de consulta de forma dinámica en cada cambio de tipo
         function select(val) {
 
             switch (val) {
@@ -187,25 +203,41 @@
 
             }
         }
+        //Control de registros duplicados
+        function checkUserDate() {
+            for (var i = 0; i < userData.length; i++) {
+                let data = userData[i].name + userData[i].surname + today;
+                let dataCheck = $('#name').val() + $('#surname').val() + today;
 
+                if (data == dataCheck) {
+                    alert("Su usuario no puede registrar más de una solicitud el mismo día");
+                    return false;
+                }
+                else if (!$('#conditions').is(':checked')) {
+                    alert("Debe aceptar las condiciones");
+                    return false;
+                }
+
+            }
+        }
+        // Listado de consultas
         function listData(userData) {
 
             jQuery('<div>', {
                 id: 'lista',
-                class: 'col-sm-12 mb-2',
-            }).appendTo('#main');
+                class: 'col-sm-12 mb-2 text-center',
+            }).appendTo('#myData');
 
             jQuery('<ul>', {
                 id: 'ulLista',
-                class: 'col-sm-12 mb-2',
+                class: 'col-sm-12 mb-2 list-group list-group-flush text-center',
             }).appendTo('#lista');
 
             for (var i = 0; i < userData.length; i++) {
 
-
-
                 jQuery('<li>', {
-                    text: "Usuario : " + userData[i].name + " - " + userData[i].query + " - " + userData[i].subQuery,
+                    class: 'list-group-item text-center',
+                    text: `Usuario: ${userData[i].name} || email:  ${userData[i].email} || Consulta: ${userData[i].query} - ${userData[i].subQuery}`
                 }).appendTo('#ulLista');
             }
         }

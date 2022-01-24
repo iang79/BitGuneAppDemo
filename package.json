@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     
-    "start": "./node_modules/.bin/netlify-lambda serve src",
-    "build": "./node_modules/.bin/netlify-lambda build src",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "dependencies": {
@@ -30,4 +29,3 @@
     "nodemon": "^2.0.15"
   }
 }
-// "start": "node index.js",

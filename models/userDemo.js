@@ -14,35 +14,32 @@ const UserDemoSchema = Schema({
   email: {
     type: String,
     require: false,
+    unique: true, // ensure unique email
   },
   telephone: {
     type: String,
     require: false,
   },
-  birthDate: {
-    type: Date,
-    require: false,
-  },
+  birth: Date,
   sex: {
     type: String,
     require: false,
   },
   query: {
     type: String,
-    require: false,
+    require: true,
   },
   subQuery: {
     type: String,
-    require: false,
+    require: true,
   },
   msg: {
     type: String,
-    require: false,
   },
   conditions: {
     type: Boolean,
-    require: true,
     default: false,
+    require: true,
   },
 });
 
