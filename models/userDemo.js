@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-const Informacion = ["Productos", "Promociones", "Devoluciones", "Envios"];
-const IncidenciaTecnica = ["Instalación", "Transporte"];
-const Otros = [];
-const query = [Informacion, IncidenciaTecnica, Otros];
+const { checkSchema } = require("express-validator");
 
 const UserDemoSchema = Schema({
   name: {
@@ -13,9 +9,13 @@ const UserDemoSchema = Schema({
   },
   surname: {
     type: String,
-    require: false,
+    require: true,
   },
   email: {
+    type: String,
+    require: false,
+  },
+  telephone: {
     type: String,
     require: false,
   },
@@ -27,7 +27,14 @@ const UserDemoSchema = Schema({
     type: String,
     require: false,
   },
-  queryType: query,
+  query: {
+    type: String,
+    require: false,
+  },
+  subQuery: {
+    type: String,
+    require: false,
+  },
   msg: {
     type: String,
     require: false,
@@ -40,14 +47,3 @@ const UserDemoSchema = Schema({
 });
 
 module.exports = mongoose.model("UserDemo", UserDemoSchema);
-
-/*
- Productos: String,
-        Promociones: String,
-        Devoluciones: String,
-        Envios: String,
-
-        Instalacion: String,
-        Transporte: any,
-      },
-      */

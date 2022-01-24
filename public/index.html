@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/scripts/script.js"></script>
+
+
+</head>
+
+<body>
+    <nav class="nav">
+        <a class="nav-link active" href="#">FORMULARIO</a>
+    </nav>
+    <div id="main" class="container border col-sm-3">
+        <form action="/api/user" id="form" method="POST" class="mt-4">
+            <input type="hidden" name="oculto" val="campo oculto pero no invisible!" />
+            <div class="form-group col-sm-12 mb-2">
+                <label for="name" class="col-form-label">Nombre: </label>
+                <input type="text" id="name" name="name" class="form-control" required />
+            </div>
+            <div class="form-group col-sm-12 mb-2">
+                <label for="surname" class="col-form-label">Apellidos: </label>
+                <input type="text" id="surname" name="surname" class="form-control" required />
+            </div>
+            <div class="form-group col-sm-12 mb-2">
+                <label for="email" class="col-form-label">Email: </label>
+                <input type="text" id="email" name="email" class="form-control" required />
+            </div>
+            <div class="form-group col-sm-12 mb-2">
+                <label for="telephone" class="col-form-label">Teléfono: </label>
+                <input type="text" id="telephone" name="telephone" class="form-control" required />
+            </div>
+            <div class="form-group col-sm-12 mb-2">
+                <label for="birthDate" class="col-form-label">Fecha de nacimiento:
+                </label>
+                <input type="date" id="birthDate" name="birthDate" class="form-control" required />
+            </div>
+            <div class="form-group col-sm-12 mb-2">
+                <label for="sex" class="col-form-label">Sexo: </label>
+                <select name="subsex" id="subsex" class="form-control">
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-12 mb-2">
+                <label for="query" class="col-form-label">Tipo de Consulta: </label>
+                <select name="query" id="query" class="form-control" onchange='select(selectedIndex)'>
+                </select>
+            </div>
+
+            <div id=msgdiv class="form-group col-sm-12 mb-2">
+                <label for="msg" class="col-form-label">Mensaje: </label>
+                <input type="textbox" id="msg" name="msg" class="form-control" />
+            </div>
+            <div class="form-group col-sm-12 mb-2">
+                <input type="checkbox" id="conditions" name="conditions" />
+                <label for="conditions" class="col-form-label">Aceptar condiciones
+                </label>
+            </div>
+            <div class="form-check">
+                <button type="submit" class="btn btn-primary col-sm-4 mb-2">
+                    Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div id="myData"></div>
+    <script>
+
+        let qInf = [];
+        let qInc = [];
+
+        fetch("http://localhost:3977/api/info")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log("error: " + err);
+            });
+
+        fetch("http://localhost:3977/api/user")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (dataUser) {
+                listData(dataUser);
+            })
+            .catch(function (err) {
+                console.log("error: " + err);
+            });
+
+        function appendData(data) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                var options = document.createElement('option');
+                options.value = data[i].name;
+                options.text = data[i].name;
+                $('#query').append(options);
+
+
+                if (i == 0) {
+
+                    // ARRANCAR ROBO3T!!
+                    for (var j = 0; j < data[i].sub.length; j++) {
+
+                        qInf.push(data[i].sub[j].name);
+                        console.log(qInf);
+                    }
+
+                } else if (i == 1) {
+
+
+                    for (var h = 0; h < data[i].sub.length; h++) {
+
+                        qInc.push(data[i].sub[h].name);
+                    }
+                }
+
+            }
+
+        }
+
+        function select(val) {
+
+            switch (val) {
+                case 0:
+
+                    $("#sub").remove();
+
+                    jQuery('<div>', {
+                        id: 'sub',
+                        class: 'form-group col-sm-12 mb-2'
+                    }).appendTo('#form').insertBefore("#msgdiv");
+
+
+                    jQuery('<select>', {
+                        id: 'subQuery',
+                        name: 'subQuery',
+                        class: 'form-control'
+                    }).appendTo('#sub');
+
+                    for (var h = 0; h < qInf.length; h++) {
+                        let suboptions = document.createElement('option');
+                        suboptions.value = qInf[h];
+                        suboptions.text = qInf[h];
+                        $('#subQuery').append(suboptions);
+                    }
+                    break;
+                case 1:
+
+                    $("#sub").remove();
+
+
+                    jQuery('<div>', {
+                        id: 'sub',
+                        class: 'form-group col-sm-12 mb-2'
+                    }).appendTo('#form').insertBefore("#msgdiv");
+
+
+                    jQuery('<select>', {
+                        id: 'subQuery',
+                        name: 'subQuery',
+                        class: 'form-control'
+                    }).appendTo('#sub');
+
+                    for (var j = 0; j < qInc.length; j++) {
+                        // TODO : revisar SubQuery!!
+                        let suboptions = document.createElement('option');
+                        suboptions.value = qInc[j];
+                        suboptions.text = qInc[j];
+                        $('#subQuery').append(suboptions);
+
+                    }
+
+                    break;
+                case 2:
+
+                    $("#sub").remove();
+                    break;
+
+            }
+        }
+
+        function listData(userData) {
+
+            jQuery('<div>', {
+                id: 'lista',
+                class: 'col-sm-12 mb-2',
+            }).appendTo('#main');
+
+            jQuery('<ul>', {
+                id: 'ulLista',
+                class: 'col-sm-12 mb-2',
+            }).appendTo('#lista');
+
+            for (var i = 0; i < userData.length; i++) {
+
+
+
+                jQuery('<li>', {
+                    text: "Usuario : " + userData[i].name + " - " + userData[i].query + " - " + userData[i].subQuery,
+                }).appendTo('#ulLista');
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

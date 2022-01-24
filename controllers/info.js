@@ -5,7 +5,8 @@ async function createInfo(req, res) {
   const params = req.body;
 
   info.name = params.name;
-  info.description = params.description;
+  info.sub = params.sub;
+  info.value = params.value;
 
   try {
     const infoStore = await info.save();
