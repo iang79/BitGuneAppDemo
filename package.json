@@ -6,7 +6,9 @@
   "author": "Innaki Ang",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
+    
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda build src",
     "dev": "nodemon index.js"
   },
   "dependencies": {
@@ -28,3 +30,4 @@
     "nodemon": "^2.0.15"
   }
 }
+// "start": "node index.js",
