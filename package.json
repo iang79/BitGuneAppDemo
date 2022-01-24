@@ -19,6 +19,7 @@
     "mongoose": "^6.1.7",
     "netlify": "^10.1.2",
     "netlify-cli": "^8.13.1",
+    "netlify-lambda": "^2.0.15",
     "node-fetch": "^3.2.0",
     "pug": "^3.0.2",
     "serverless-http": "^2.7.0"
