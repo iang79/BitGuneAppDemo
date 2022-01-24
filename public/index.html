@@ -71,6 +71,7 @@
     </div>
     <script>
 
+        
         let qInf = [];
         let qInc = [];
         var today = new Date();
@@ -164,6 +165,7 @@
 
                     for (var h = 0; h < qInf.length; h++) {
                         let suboptions = document.createElement('option');
+                        
                         suboptions.value = qInf[h];
                         suboptions.text = qInf[h];
                         $('#subQuery').append(suboptions);
@@ -242,7 +244,10 @@
             }
         }
 
-
+        $('document').ready(function(){
+            select();
+            
+        });
     </script>
 
 </body>
