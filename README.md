@@ -19,7 +19,9 @@ Requisitos opcionales realizados
 
 Dificultad del ejercicio 3
 
-** Incluyo funcionalidad REST y fichero "Insomnia_2022-01-25.yaml" para comprobaciones en Insomnia
+** Incluyo
+  - Base de datos respaldada en Heroku - rutas incluidas en el fichero .yaml
+  - Funcionalidad REST y fichero "Insomnia_2022-01-25.yaml" para comprobaciones en Insomnia
 
 
 
