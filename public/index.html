@@ -43,14 +43,15 @@
             </div>
             <div class="form-group col-sm-12 mb-2">
                 <label for="sex" class="col-form-label">Sexo: </label>
-                <select name="subsex" id="subsex" class="form-control">
+                <select name="subsex" id="subsex" class="selectpicker form-select">
                     <option value="Hombre">Hombre</option>
                     <option value="Mujer">Mujer</option>
                 </select>
             </div>
             <div class="form-group col-sm-12 mb-2">
                 <label for="query" class="col-form-label">Tipo de Consulta: </label>
-                <select name="query" id="query" class="selectpicker form-select" onchange='select(selectedIndex)'>
+                <select name="query" id="query" class="selectpicker form-select" onchange='select(selectedIndex)'
+                    required>
                 </select>
             </div>
 
@@ -159,6 +160,9 @@
         function select(val) {
 
             switch (val) {
+                case 0:
+                    $("#sub").remove();
+                    break;
                 case 1:
 
                     $("#sub").remove();
@@ -256,21 +260,7 @@
             }
         }
 
-<<<<<<< HEAD
-        $('document').ready(function () {
 
-            // appendData(data);
-            // alert("hola");
-            // select(0);
-        });
-
-
-=======
-        $('document').ready(function(){
-            select();
-
-        });
->>>>>>> 3c69e3642d18bbc3171206b69382e4c992d3734e
     </script>
 
 </body>
