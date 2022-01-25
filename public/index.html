@@ -6,14 +6,19 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <script src="/jquery/jquery.js"></script>
 </head>
+<style>
+    #grad1 {
+        height: 200px;
+        background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(103, 110, 165));
+    }
+</style>
 
-<body>
+<body id="grad1">
     <nav class="container border col-sm-3 mt-4">
         <a class="nav-link active text-center">SOLICITUD DE CONSULTA BITGUNE DEMO APP</a>
     </nav>
     <div id="main" class="container border col-sm-3">
         <form action="/api/user" id="form" method="POST" class="mt-4" onsubmit="return checkUserDate()">
-            <input type="hidden" name="oculto" val="campo oculto pero no invisible!" />
             <div class="form-group col-sm-12 mb-2">
                 <label for="name" class="col-form-label">Nombre: </label>
                 <input type="text" id="name" name="name" class="form-control" required />
@@ -45,7 +50,7 @@
             </div>
             <div class="form-group col-sm-12 mb-2">
                 <label for="query" class="col-form-label">Tipo de Consulta: </label>
-                <select name="query" id="query" class="form-control" onchange='select(selectedIndex)'>
+                <select name="query" id="query" class="selectpicker form-select" onchange='select(selectedIndex)'>
                 </select>
             </div>
 
@@ -115,9 +120,14 @@
 
         function appendData(data) {
 
+            var options = document.createElement('option');
+            options.text = "";
+            options.value = "";
+            $('#query').append(options);
+
             for (var i = 0; i < data.length; i++) {
 
-                var options = document.createElement('option');
+                options = document.createElement('option');
                 options.value = data[i].name;
                 options.text = data[i].name;
                 $('#query').append(options);
@@ -141,12 +151,14 @@
 
             }
 
+            $('#query option:eq(0)').attr("selected", "selected");
+
         }
         //Cargar los subtipos de consulta de forma dinámica en cada cambio de tipo
         function select(val) {
 
             switch (val) {
-                case 0:
+                case 1:
 
                     $("#sub").remove();
 
@@ -159,7 +171,7 @@
                     jQuery('<select>', {
                         id: 'subQuery',
                         name: 'subQuery',
-                        class: 'form-control'
+                        class: 'selectpicker form-select'
                     }).appendTo('#sub');
 
                     for (var h = 0; h < qInf.length; h++) {
@@ -169,7 +181,7 @@
                         $('#subQuery').append(suboptions);
                     }
                     break;
-                case 1:
+                case 2:
 
                     $("#sub").remove();
 
@@ -183,7 +195,7 @@
                     jQuery('<select>', {
                         id: 'subQuery',
                         name: 'subQuery',
-                        class: 'form-control'
+                        class: 'selectpicker form-select'
                     }).appendTo('#sub');
 
                     for (var j = 0; j < qInc.length; j++) {
@@ -196,7 +208,7 @@
                     }
 
                     break;
-                case 2:
+                case 3:
 
                     $("#sub").remove();
                     break;
@@ -237,10 +249,17 @@
 
                 jQuery('<li>', {
                     class: 'list-group-item text-center',
-                    text: `Usuario: ${userData[i].name} || email:  ${userData[i].email} || Consulta: ${userData[i].query} - ${userData[i].subQuery}`
+                    text: `Usuario: ${userData[i].name} || email: ${userData[i].email} || Consulta: ${userData[i].query} - ${userData[i].subQuery}`
                 }).appendTo('#ulLista');
             }
         }
+
+        $('document').ready(function () {
+
+            // appendData(data);
+            // alert("hola");
+            // select(0);
+        });
 
 
     </script>

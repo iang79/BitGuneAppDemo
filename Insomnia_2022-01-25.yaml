@@ -1,0 +1,271 @@
+_type: export
+__export_format: 4
+__export_date: 2022-01-25T08:01:27.924Z
+__export_source: insomnia.desktop.app:v2021.7.2
+resources:
+  - _id: req_20e60b61f3d0488b91e2eb04d20a9499
+    parentId: fld_0cb00ee16ebf428b8b20998db6eb8be9
+    modified: 1642962780517
+    created: 1642593243969
+    url: http://localhost:3000/api/user
+    name: createUser
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"Josu",
+        	"surname":"Col",
+        	"email":"error@error.com",
+        	"birthDate":"",
+        	"sex":"male",
+        	"queryType": {
+        		"Informacion":"Productos"
+        	},
+        	"msg":"Lo sabia",
+        	"conditions":true
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_de99672550f34401a58397ec8d8dcee0
+    authentication: {}
+    metaSortKey: -1642593256689
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_0cb00ee16ebf428b8b20998db6eb8be9
+    parentId: wrk_29bc435d19fc48d48d8e63298511b72e
+    modified: 1642962489640
+    created: 1642962489640
+    name: Users
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642962489640
+    _type: request_group
+  - _id: wrk_29bc435d19fc48d48d8e63298511b72e
+    parentId: null
+    modified: 1642582533358
+    created: 1642582533358
+    name: OW_Demo
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_2ab31b4155a04a89b8c1f3eb79570c44
+    parentId: fld_0cb00ee16ebf428b8b20998db6eb8be9
+    modified: 1642962495802
+    created: 1642593256639
+    url: http://localhost:3977/api/user
+    name: getUsers
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642593256639
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6d54e4d8f9c14ab4a71ac105c557de4e
+    parentId: fld_0cb00ee16ebf428b8b20998db6eb8be9
+    modified: 1643097542781
+    created: 1642962525600
+    url: http://localhost:3977/api/user/61eea46cf81f191fbb9e9df2
+    name: deleteUserById
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642592354119
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_339d7794c24d45be8d4d7ca687ee6282
+    parentId: fld_89a26d5411ea43ddaa7b9a22cd2834e3
+    modified: 1643019124915
+    created: 1642670611207
+    url: https://demo-node-express.herokuapp.com/api/user
+    name: getUsers
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642670467033
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_89a26d5411ea43ddaa7b9a22cd2834e3
+    parentId: wrk_29bc435d19fc48d48d8e63298511b72e
+    modified: 1642670443659
+    created: 1642670443659
+    name: Heroku App
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1642670443659
+    _type: request_group
+  - _id: req_511a66f334aa473d9508d54f68bddfab
+    parentId: fld_89a26d5411ea43ddaa7b9a22cd2834e3
+    modified: 1643019198704
+    created: 1643019020976
+    url: https://demo-node-express.herokuapp.com/api/user/61ee7ba7e89ea82820c3cf76
+    name: deleteUserById
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642669537341.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_78bb2eb982eb497aa9ce90bb98f44beb
+    parentId: fld_89a26d5411ea43ddaa7b9a22cd2834e3
+    modified: 1643019178456
+    created: 1643018913744
+    url: https://demo-node-express.herokuapp.com/api/user
+    name: createUser
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "name" : "Jorge",
+            "surname" : "Gomez",
+            "email" : "jorge@info.net",
+            "telephone" : "603789678",
+            "query" : "Incidencia técnica",
+            "subQuery" : "Instalación",
+            "msg" : "Prueba Jorge",
+            "__v" : 0
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_8563064d972f484f8c87d4f2885c7cd2
+    authentication: {}
+    metaSortKey: -1642669227444
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1f80fa336b944a11a853d5884357cf30
+    parentId: wrk_29bc435d19fc48d48d8e63298511b72e
+    modified: 1642601711627
+    created: 1642601700452
+    url: http://localhost:3000/api/info
+    name: getInfos
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642601700452
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_85a93c2a06ea4fbfb1b887ba92a46d81
+    parentId: wrk_29bc435d19fc48d48d8e63298511b72e
+    modified: 1642602770252
+    created: 1642601569963
+    url: http://localhost:3000/api/info
+    name: createInfo
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |+
+        
+        {
+        	"name":"Envios",
+        	"description":""
+        }
+
+
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e54de951a2244c10ba7b24413d084970
+    authentication: {}
+    metaSortKey: -1642601569963
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_67ac1cf22c35d085e6c097c1ec37cd0c46d8a36b
+    parentId: wrk_29bc435d19fc48d48d8e63298511b72e
+    modified: 1642582533368
+    created: 1642582533368
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1642582533368
+    _type: environment
+  - _id: jar_67ac1cf22c35d085e6c097c1ec37cd0c46d8a36b
+    parentId: wrk_29bc435d19fc48d48d8e63298511b72e
+    modified: 1642582533370
+    created: 1642582533370
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_47bad099c0da4462890369ca1bd4d46b
+    parentId: wrk_29bc435d19fc48d48d8e63298511b72e
+    modified: 1642582533362
+    created: 1642582533362
+    fileName: OW_Demo
+    contents: ""
+    contentType: yaml
+    _type: api_spec
