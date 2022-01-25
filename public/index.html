@@ -13,7 +13,7 @@
     }
 </style>
 
-<body id="grad1">
+<body class="p-3 mb-2" id="grad1">
     <nav class="container border col-sm-3 mt-4">
         <a class="nav-link active text-center">SOLICITUD DE CONSULTA BITGUNE DEMO APP</a>
     </nav>
@@ -75,6 +75,7 @@
         <div id="myData" class="card-header text-center">Solicitudes</div>
     </div>
     <script>
+
 
         let qInf = [];
         let qInc = [];
@@ -176,6 +177,7 @@
 
                     for (var h = 0; h < qInf.length; h++) {
                         let suboptions = document.createElement('option');
+
                         suboptions.value = qInf[h];
                         suboptions.text = qInf[h];
                         $('#subQuery').append(suboptions);
@@ -254,6 +256,7 @@
             }
         }
 
+<<<<<<< HEAD
         $('document').ready(function () {
 
             // appendData(data);
@@ -262,6 +265,12 @@
         });
 
 
+=======
+        $('document').ready(function(){
+            select();
+
+        });
+>>>>>>> 3c69e3642d18bbc3171206b69382e4c992d3734e
     </script>
 
 </body>
